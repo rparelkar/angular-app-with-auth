@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing }        from './app.routing';
+import { AuthGuard } from './_guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -22,7 +23,9 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

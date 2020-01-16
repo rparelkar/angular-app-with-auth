@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     console.log(this.currentUser);
     if(this.currentUser.username == 'username' && this.currentUser.password == 'password'){
       console.log('authenticated');
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
       this.router.navigate(['home']);
     }
   }
