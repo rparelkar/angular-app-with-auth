@@ -1,6 +1,7 @@
 
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from '../_models/User'
 
 @Component({
   selector: 'login-component',
@@ -9,15 +10,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-  model: any = {};
-
-  constructor() { }
+  currentUser: User = new User();
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
 
   }
 
   login() {
-
+    console.log(this.currentUser);
+    if(this.currentUser.username == 'username' && this.currentUser.password == 'password'){
+      console.log('authenticated');
+      this.router.navigate(['home']);
+    }
   }
 }
