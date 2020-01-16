@@ -1,5 +1,4 @@
-
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/User'
 
@@ -11,6 +10,7 @@ import { User } from '../_models/User'
 
 export class LoginComponent implements OnInit {
   currentUser: User = new User();
+  @Output() loginStatus = new EventEmitter<boolean>();
   constructor(
     private router: Router
   ) { }
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.currentUser);
     if(this.currentUser.username == 'username' && this.currentUser.password == 'password'){
-      console.log('authenticated');
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      this.loginStatus.emit(true);
+      console.log(this.loginStatus);
       this.router.navigate(['home']);
     }
   }

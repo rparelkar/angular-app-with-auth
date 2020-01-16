@@ -20,4 +20,9 @@ export class AppComponent  implements OnInit {
   ngOnInit() {
   }
 
+  isloggedInStatus(e:Boolean){
+    console.log(e);
+    this.isLoggedIn = e;
+  }
+
 }
