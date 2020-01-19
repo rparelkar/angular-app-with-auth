@@ -48,6 +48,9 @@ export class AppComponent  implements OnInit {
 
   goToLogout(){
     localStorage.removeItem('currentUser');
+    this.setOthersFalse();
+    this.showLogin = true;
+    this.isLoggedIn = false;
   }
 
 }
