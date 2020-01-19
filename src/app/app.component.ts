@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './_guards/auth.guard';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +9,45 @@ import { AuthGuard } from './_guards/auth.guard';
 })
 export class AppComponent  implements OnInit {
   private isLoggedIn:Boolean = false;
+  private showLogin:Boolean = true;
+  private showHome:Boolean = false;
+  private showAbout:Boolean = false;
 
-  constructor(
-    private _authguard: AuthGuard
-  ){
-    this.isLoggedIn = this._authguard.isLoggedIn();
+  constructor(){
   }
 
   ngOnInit() {
+
   }
 
-  isloggedInStatus(e:Boolean){
-    console.log(e);
+  isloggedInStatus(e) {
     this.isLoggedIn = e;
+    this.goToHome();
+  }
+
+  setOthersFalse(){
+    this.showLogin = false;
+    this.showHome = false;
+    this.showAbout = false;
+  }
+
+  goToHome() {
+    if(this.isLoggedIn && !this.showHome){
+      this.setOthersFalse();
+      this.showHome = true;
+    }
+  }
+
+  goToAbout() {
+    console.log('about clicked');
+    if(this.isLoggedIn && !this.showAbout){
+      this.setOthersFalse();
+      this.showAbout = true;
+    }
+  }
+
+  goToLogout(){
+
   }
 
 }

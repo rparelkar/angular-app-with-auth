@@ -8,13 +8,13 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li [hidden]="!isLoggedIn" class="nav-item active">
-        <a class="nav-link" routerLink="/home">Home</a>
+        <a class="nav-link" (click)="goToHome()">Home</a>
       </li>
       <li [hidden]="!isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/about">About</a>
+        <a class="nav-link" (click)="goToAbout()">About</a>
       </li>
       <li [hidden]="!isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/logout">Logout</a>
+        <a class="nav-link" (click)="goToLogout()">Logout</a>
       </li>
     </ul>
   </div>
@@ -23,11 +23,12 @@
 <main role="main" class="container">
 
   <div class="starter-template">
-    <!-- <router-outlet (loginStatus)="isloggedInStatus($event)">
-    </router-outlet> -->
-    <router-outlet>
-    </router-outlet>
-    <login-component (loginStatus)="isloggedInStatus($event)"></login-component>
+    <login-component [hidden]="!showLogin" (loginStatus)="isloggedInStatus($event)">
+    </login-component>
+    <home-component [hidden]="!showHome">
+    </home-component>
+    <about-component [hidden]="!showAbout">
+    </about-component>
   </div>
 
 </main><!-- /.container -->
