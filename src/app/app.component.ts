@@ -47,7 +47,7 @@ export class AppComponent  implements OnInit {
   }
 
   goToLogout(){
-
+    localStorage.removeItem('currentUser');
   }
 
 }
